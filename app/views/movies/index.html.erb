@@ -1,0 +1,54 @@
+
+ <% if user_signed_in? %>
+ <% if current_user.is_admin %>
+   <%= link_to 'New movie', new_movie_path %>
+   <% end %>
+  <% end %>
+<br/>
+<br/>
+
+<table id="moviesTable">
+<thead>
+  <tr>
+    <th> Movie Name </th>
+    <th> Release Year </th>
+    <th> Genres </th>
+     <% if user_signed_in? %>
+        <% if current_user.is_admin %>
+          <th></th>
+          <th></th>
+        <% end %>
+      <% end %>
+  </tr>
+</thead>
+<tfoot>
+    <tr>
+      <td> Movie Name </td>
+      <td> Release Year </td>
+      <td> Genres </td>
+       <% if user_signed_in? %>
+          <% if current_user.is_admin %>
+            <td></td>
+            <td></td>
+          <% end %>
+        <% end %>
+    </tr>
+</tfoot>
+<tbody>
+  <% @movies.each do |movie| %>
+    <tr>
+      <td><%= link_to movie.name, movie_path(movie) %></td> 
+      <td><%= movie.releaseYear %></td>
+      <td><%= movie.genres %></td>
+      <% if user_signed_in? %>
+        <% if current_user.is_admin %>
+          <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
+          <td><%= link_to 'Delete', movie_path(movie),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td> 
+        <% end %>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

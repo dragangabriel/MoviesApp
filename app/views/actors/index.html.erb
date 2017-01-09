@@ -1,0 +1,51 @@
+
+ <% if user_signed_in? %>
+ <% if current_user.is_admin %>
+   <%= link_to 'New actor', new_actor_path %>
+   <% end %>
+  <% end %>
+<br/>
+<br/>
+
+<table id="actorsTable">
+<thead>
+  <tr>
+    <th> Actor Name </th>
+    <th> Date of Birth </th>
+     <% if user_signed_in? %>
+        <% if current_user.is_admin %>
+          <th></th>
+          <th></th>
+        <% end %>
+      <% end %>
+  </tr>
+</thead>
+<tfoot>
+    <tr>
+      <td> Actor Name </td>
+      <td> Date of Birth  </td>
+       <% if user_signed_in? %>
+          <% if current_user.is_admin %>
+            <td></td>
+            <td></td>
+          <% end %>
+        <% end %>
+    </tr>
+</tfoot>
+<tbody>
+  <% @actors.each do |actor| %>
+    <tr>
+      <td><%= link_to actor.name, actor_path(actor) %></td> 
+      <td><%= actor.dateOfBirth %></td>
+      <% if user_signed_in? %>
+        <% if current_user.is_admin %>
+          <td><%= link_to 'Edit', edit_actor_path(actor) %></td>
+          <td><%= link_to 'Delete', actor_path(actor),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td> 
+        <% end %>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

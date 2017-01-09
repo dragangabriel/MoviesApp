@@ -1,0 +1,25 @@
+<hr/>
+<div class="row">
+	<div class="col-md-2">
+		<strong><%= comment.user.email %></strong><br/>
+		<%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+	</div>
+  	<div class="col-md-8">
+  		<pre><code><strong><%= comment.body %></strong></code></pre>
+  	</div>
+  	<div class="col-md-2">
+  	    Vote: <%= comment.vote %>
+  	    <br/><div class="progress">
+	    <div class="progress-bar" role="progressbar" aria-valuenow='<%= comment.vote %>' aria-valuemin="0" aria-valuemax="10" style="width:<%= 10*comment.vote %>%">
+	    </div>
+	  </div>
+
+	  <% if user_signed_in? %>
+	 	<% if current_user.is_admin %>
+				 <%= link_to 'Delete Comment', [comment.movie, comment],
+		               method: :delete,
+		               data: { confirm: 'Are you sure?' } %>
+		<% end %>
+ 	<% end %>
+  	</div>
+</div>

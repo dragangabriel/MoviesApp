@@ -1,0 +1,4 @@
+redis-server
+ctrl+Z
+bg %1
+bin/rails server

@@ -1,0 +1,37 @@
+<h1>New Movie</h1>
+
+<%= form_for :movie, url: movies_path do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+ 
+  <p>
+    <%= f.label :releaseYear %><br>
+    <%= f.text_area :releaseYear %>
+  </p>
+
+ <p>
+    <%= f.label :duration %><br>
+    <%= f.text_area :duration %>
+  </p>
+
+<p>
+    <%= f.label :genres %><br>
+    <%= f.text_area :genres %>
+  </p>
+
+<p>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </p>
+
+<p>
+    <%= f.label :trailerUrl %><br>
+    <%= f.text_area :trailerUrl %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

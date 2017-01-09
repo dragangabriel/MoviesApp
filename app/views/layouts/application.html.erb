@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Movies Database</title>
+      <%= stylesheet_link_tag    'application', media: 'all' %>
+      <%= javascript_include_tag 'application' %>
+      <%= csrf_meta_tags %>
+    <!-- Bootstrap Core CSS -->
+    <link href="/assets/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/assets/sb-admin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="/assets/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="/assets/bootstrap.css" media="screen" rel="stylesheet">
+	<link href="/assets/jquery.dataTables.min.css" media="screen" rel="stylesheet">
+	<style>
+	  tfoot input {
+	        width: 100%;
+	        padding: 3px;
+	        box-sizing: border-box;
+	    }
+
+        * { 
+        direction: ltr;
+         }
+
+        .carousel-inner > .item > img,
+          .carousel-inner > .item > a > img {
+              width: 50%;
+              margin: auto;
+          }
+        
+	</style>
+</head>
+
+<body>
+
+    <div id="wrapper" >        
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Movies Database</a>               
+            </div>
+            <!-- Top Menu Items -->
+          
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li class="active">
+                        <a href="/movies"><i class="fa fa-fw fa-dashboard"></i> Movies </a>
+                        <a href="/actors"><i class="fa fa-fw fa-dashboard"></i> Actors </a>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+						 <% if user_signed_in? %>
+						 	<div class="row" style="color: white; padding-left: 30px"><%= current_user.email %></div>
+						  <% end %>	
+						 <br/>
+                        <% if user_signed_in? %>
+						  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+						  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+						 <% else %> 
+						  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+						  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+						<% end %>
+						<br/>	
+						<br/>				
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+        <div id="page-wrapper" style="padding: 100px">
+
+            <div class="container-fluid">
+
+                <div class="row">
+                	<div class="col-md-12">
+	                	<% if notice %>
+						  <p class="alert alert-success"><%= notice %></p>
+						<% end %>
+						<% if alert %>
+						  <p class="alert alert-danger"><%= alert %></p>
+						<% end %>
+    					<%= yield %>
+                	</div>
+                    <a href="#0" class="cd-top">Top</a>
+                </div>
+
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <script>
+        $( document ).ready(function() {
+            $('#moviesTable').DataTable();
+            $('#actorsTable').DataTable();
+        });
+	</script>
+</body>
+
+</html>
