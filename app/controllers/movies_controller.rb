@@ -12,7 +12,19 @@ def index
   def show
     @movie = Movie.find(params[:id])
     @actors = @movie.actors
-    @recommendations = Movie.top(3)
+    @movies = Movie.all;
+    @genres = @movie.genres.split(", ");
+    @recommendations = Array.new;
+
+    @movies.each do |movie|
+  		if @genres.any? { |word| movie.genres.include?(word) } && movie != @movie
+       movie.duration = movie.comments.length > 0 ? movie.comments.sum(&:vote) / movie.comments.length : 0;  / duration = rating/
+			 @recommendations.push(movie)
+  		end
+	 end
+
+  @recommendations = @recommendations.sort_by { |obj| -obj.duration }.first(3);
+
   end
 
   def create

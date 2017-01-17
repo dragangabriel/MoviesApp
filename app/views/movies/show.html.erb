@@ -58,14 +58,19 @@
   </div>
 </div>
 <br/><br/>
-<h2>We are recommending</h2>
-<div class="row">
-	<% @recommendations.each do |recommendation| %>
-	<span>test</span>
-      <span><%= link_to recommendation.name, recommendation_path(recommendation) %></span>
-      <br/>
-	<% end %>
-</div>
+<% if @recommendations.count > 0 %> 
+	<h2>We are recommending</h2>
+	<div class="row">
+		<% @recommendations.each do |recommendation| %>
+		<div class="col-md-4" style="text-align: center">
+		<!--<%= recommendation.duration %>-->
+			<h5><%= link_to recommendation.name, movie_path(recommendation) %></h5>
+			<iframe width="250" height="200" src=<%= recommendation.trailerUrl %>>
+			</iframe>
+		</div>	 
+		<% end %>
+	</div>
+<% end %>
 
 
 <br/><br/>
