@@ -16,7 +16,7 @@
 	</div>
 	<div class="col-md-5 well"><strong>Movies List</strong><br/>
 		 <% @movies.each do |movie| %>
-          <span><%= link_to movie.name, movie_path(movie) %></span>
+          <span><%= link_to movie.name, movie_path(movie) %></span><br/>
         <% end %>
 	</div>	
 </div>
