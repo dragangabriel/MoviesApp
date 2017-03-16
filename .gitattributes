@@ -1,3 +1,4 @@
-static/* linguist-vendored
+lib/* linguist-vendored
+vendor/* linguist-vendored
 
 *.rb linguist-language=Ruby
