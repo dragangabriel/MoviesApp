@@ -1,4 +1,9 @@
 lib/* linguist-vendored
 vendor/* linguist-vendored
+app/assets/* linguist-vendored
+lib/* linguist-vendored
+test/* linguist-vendored
+tmp/* linguist-vendored
+vendor/assets/* linguist-vendored
 
 *.rb linguist-language=Ruby
